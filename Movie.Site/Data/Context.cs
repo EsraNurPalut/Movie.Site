@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Movie.Site.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Movie.Site.Data
 {
-    public class Context:DbContext
+    public class Context: IdentityDbContext
     {
         public Context(DbContextOptions<Context> options) : base(options)
         {

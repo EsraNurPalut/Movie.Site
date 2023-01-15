@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,8 +26,12 @@ namespace Movie.Site
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<Context>(); //register
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Context>(); //register
+
             services.AddControllersWithViews();
-            services.AddDbContext<Context>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DbConn")));
+            services.AddDbContext<Context>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DbConn")));  //baglantý clm
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +58,7 @@ namespace Movie.Site
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Movie}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
