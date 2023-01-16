@@ -20,6 +20,7 @@ namespace Movie.Site.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("ilk logum");
             return View();
         }
 

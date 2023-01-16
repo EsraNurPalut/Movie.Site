@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,10 @@ namespace Movie.Site
     {
         public static void Main(string[] args)
         {
+    //        Log.Logger = new LoggerConfiguration()
+    //.WriteTo.Console()
+    //.CreateLogger(); //loglama
+
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -21,6 +26,6 @@ namespace Movie.Site
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                });/*.UseSerilog();*/  //loglama
     }
 }

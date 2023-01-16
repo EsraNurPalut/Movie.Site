@@ -26,8 +26,10 @@ namespace Movie.Site
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Context>(); //register
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Context>(); //register
+            /*    services.AddDbContext<Context>(); *///register
+            /* services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Context>();*/ //register
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Context>();
+
 
             services.AddControllersWithViews();
             services.AddDbContext<Context>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DbConn")));  //baglantý clm

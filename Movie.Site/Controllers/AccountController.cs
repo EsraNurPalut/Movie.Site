@@ -44,7 +44,7 @@ namespace Movie.Site.Controllers
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    return RedirectToAction("Index", "Movie");
+                    return RedirectToAction("Login", "Account");
                 }
                 else
                 {
@@ -60,7 +60,37 @@ namespace Movie.Site.Controllers
             }
             return View(model);
         }
+        [HttpGet]
+        //[AllowAnonymous]
+        public IActionResult Login()
+        {      
+            return View();
+        }
 
+        [HttpPost]
+        //[AllowAnonymous]
+        public async Task<IActionResult> Login(Login login)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(login.Email, login.Password, login.RememberMe, false);
 
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Movie");
+                }
+
+                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+
+            }
+            return View(login);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction("Login");
+        }
     }
 }

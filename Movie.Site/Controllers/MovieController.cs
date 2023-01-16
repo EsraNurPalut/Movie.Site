@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Movie.Site.Controllers
 {
+    
     public class MovieController : Controller
     {
         private readonly Context _db;
