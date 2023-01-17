@@ -6,10 +6,11 @@
 }   
 
 <h1>Kayıt Ol</h1>
+<p>Yeni bir hesap oluşturun</p>
 
 <div class="row">
     <div class="col-md-12">
-        <form method="post">
+        <form method="post" asp-action="Register">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="UserName"></label>

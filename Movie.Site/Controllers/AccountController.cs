@@ -1,17 +1,19 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Movie.Site.Data;
 using Movie.Site.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Movie.Site.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager; //register için
+        private readonly SignInManager<IdentityUser> _signInManager; //login için
 
         public AccountController(UserManager<IdentityUser> userManager,
                               SignInManager<IdentityUser> signInManager)
@@ -34,7 +36,7 @@ namespace Movie.Site.Controllers
             {
                 var user = new IdentityUser
                 {
-                    UserName = model.UserName,
+                    UserName = model.UserMail,
                     Email = model.UserMail,
                 };
 
@@ -42,7 +44,7 @@ namespace Movie.Site.Controllers
 
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    //await _signInManager.SignInAsync(user, isPersistent: false);
 
                     return RedirectToAction("Login", "Account");
                 }
@@ -68,9 +70,9 @@ namespace Movie.Site.Controllers
         }
 
         [HttpPost]
-        //[AllowAnonymous]
         public async Task<IActionResult> Login(Login login)
         {
+           
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(login.Email, login.Password, login.RememberMe, false);
@@ -80,11 +82,13 @@ namespace Movie.Site.Controllers
                     return RedirectToAction("Index", "Movie");
                 }
 
-                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+                ModelState.AddModelError(string.Empty, "Hatalı Giriş Denemesi");
 
             }
             return View(login);
         }
+
+
 
         public async Task<IActionResult> Logout()
         {
@@ -94,3 +98,19 @@ namespace Movie.Site.Controllers
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//[AllowAnonymous]

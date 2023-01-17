@@ -14,7 +14,7 @@ namespace Movie.Site.Data
 
         public Context(DbContextOptions<Context> options) : base(options)
         {
-            _options = options;
+            //_options = options;
         }
 
         public virtual DbSet<Movies> Movies { get; set; }
