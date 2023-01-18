@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Movie.Site.Data;
 using Movie.Site.Models;
 using System;
 using System.Collections.Generic;
@@ -18,9 +20,10 @@ namespace Movie.Site.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public  IActionResult Index()
         {
-            _logger.LogInformation("ilk logum");
+            //_logger.LogInformation("ilk logum");
+            
             return View();
         }
 

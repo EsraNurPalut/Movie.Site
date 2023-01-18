@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Movie.Site.Data;
 using Movie.Site.Models;
@@ -9,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace Movie.Site.Controllers
 {
-    
+     [Authorize]  //kullanıcı giriş yapmadan bu sayfalara ulaşamaz.
     public class MovieController : Controller
     {
         private readonly Context _db;
 
         public MovieController(Context db)
         {
-            _db = db;
+            _db = db; /* dependency injection : bagımlılık çözücü*/
         }
 
 

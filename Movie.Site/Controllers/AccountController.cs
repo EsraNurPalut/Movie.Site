@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Movie.Site.Data;
 using Movie.Site.Models;
@@ -10,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace Movie.Site.Controllers
 {
+    [AllowAnonymous] //Kurallardan muaf olmalı.
+
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager; //register için

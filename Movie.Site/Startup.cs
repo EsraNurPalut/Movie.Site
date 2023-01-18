@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,18 +28,25 @@ namespace Movie.Site
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Context>();
-
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Context>();  //register için
 
 
             services.AddDbContext<Context>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DbConn")));  //baglantý clm
 
 
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.LoginPath = "/Account/Login";
+            services.AddAuthentication(
+           CookieAuthenticationDefaults.AuthenticationScheme) //login için
+               .AddCookie(x =>
+               {
+                   x.LoginPath = "/Account/Login";
 
-            });
+               });
+
+            //services.ConfigureApplicationCookie(options =>
+            //{
+            //    options.LoginPath = "/Account/Login";
+
+            //});
 
 
             services.AddControllersWithViews();
@@ -59,7 +67,10 @@ namespace Movie.Site
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
+            app.UseAuthentication(); //login için eklendi
 
             app.UseRouting();
 
@@ -69,7 +80,7 @@ namespace Movie.Site
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Listele}/{action=Index}/{id?}");
             });
         }
     }

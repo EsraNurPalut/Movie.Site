@@ -6,9 +6,7 @@
 }
 
 <h1 class="alert-light font-italic"><b><b>Filmler</b></b></h1>
-<p>
-    <a class="btn btn-dark" asp-action="Create">Film Ekle</a>
-</p>
+
 <table class="table alert-heading">
     <thead>
         <tr class="font-italic">
@@ -21,30 +19,27 @@
             <th>
                 @Html.DisplayNameFor(model => model.MovieType)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-        <tr class="font-italic" >
-            <td>
-                @Html.DisplayFor(modelItem => item.MovieName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MovieDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MovieType)
-            </td>
-            <td>
-                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.MovieId">Edit</a> |
-
-                <a class="btn btn-outline-success" asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>
-            </td>
-        </tr>
-        } 
+            <tr class="font-italic">
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieType)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 <br />
 <h6 class="font-italic">İyi Seyirler</h6>
+
+
+
