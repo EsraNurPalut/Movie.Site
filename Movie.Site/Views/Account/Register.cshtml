@@ -5,32 +5,32 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }   
 
-<h1>Kayıt Ol</h1>
-<p>Yeni bir hesap oluşturun</p>
+    <h1 style="color:#f00;"><b>Kayıt Ol</b></h1>
+    <p style="color:blue">Yeni bir hesap oluşturun</p>
 
-<div class="row">
-    <div class="col-md-12">
-        <form method="post" asp-action="Register">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserName"></label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserMail"></label>
-                <input asp-for="UserMail" class="form-control" />
-                <span asp-validation-for="UserMail" class="text-danger"></span>
-            </div>
+    <div class="row">
+        <div class="col-md-5">
+            <form method="post" asp-action="Register">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserMail"></label>
+                    <input asp-for="UserMail" class="form-control" />
+                    <span asp-validation-for="UserMail" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="UserPassword"></label>
-                <input asp-for="UserPassword" class="form-control" />
-                <span asp-validation-for="UserPassword" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="UserPassword"></label>
+                    <input asp-for="UserPassword" class="form-control" />
+                    <span asp-validation-for="UserPassword" class="text-danger"></span>
+                </div>
 
-            <button type="submit" class="btn-primary">Kayıt Ol</button>
-        </form>
+                <button type="submit" class="btn-primary">Kayıt Ol</button>
+            </form>
 
+        </div>
     </div>
-</div>

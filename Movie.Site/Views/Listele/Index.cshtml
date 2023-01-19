@@ -5,11 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="alert-light font-italic"><b><b>Filmler</b></b></h1>
+<h1 style="color:#f00;"><b><b><i>Filmler</i></b></b></h1>
+<marquee behavior=alternate bgcolor="#99FFFF">İYİ SEYİRLER...İYİ İYİ SEYİRLER...İYİ SEYİRLER...İYİ SEYİRLER...İYİ SEYİRLER...İYİ SEYİRLER...İYİ SEYİRLER...İYİ SEYİRLER...İYİ SEYİRLER</marquee>
+<br />
 
 <table class="table alert-heading">
     <thead>
-        <tr class="font-italic">
+        <tr class="font-italic bg-light">
             <th>
                 @Html.DisplayNameFor(model => model.MovieName)
             </th>
@@ -38,8 +40,8 @@
         }
     </tbody>
 </table>
-<br />
-<h6 class="font-italic">İyi Seyirler</h6>
+
+
 
 
 
