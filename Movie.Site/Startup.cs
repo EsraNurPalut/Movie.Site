@@ -28,17 +28,17 @@ namespace Movie.Site
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Context>();  //register için
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Context>();  //identity baglntý cml
 
 
             services.AddDbContext<Context>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DbConn")));  //baglantý clm
 
 
             services.AddAuthentication(
-           CookieAuthenticationDefaults.AuthenticationScheme) //login için
+           CookieAuthenticationDefaults.AuthenticationScheme) //login-kimlik dogrulamasý için 
                .AddCookie(x =>
                {
-                   x.LoginPath = "/Account/Login";
+                   x.LoginPath = "/Account/Login"; //giriþ yolu
 
                });
 
@@ -70,11 +70,11 @@ namespace Movie.Site
 
             app.UseStaticFiles();
 
-            app.UseAuthentication(); //login için eklendi
+            app.UseAuthentication(); //uygulamanýn identity ile kimlik doðrulamasý gerçekleþtireceðinibelirtiyoruz.
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthorization(); //login için yetki
 
             app.UseEndpoints(endpoints =>
             {
